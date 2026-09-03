@@ -1,0 +1,21 @@
+@import "font";
+@import "base";
+@import "layout";
+@import "modules/example";
+
+
+
+
+
+#board {
+    width: 1900px;
+    height: 2200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    border: 2px solid #000;
+    
+}
+
