@@ -15,7 +15,11 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 10px;
-    border: 2px solid #000;
     
 }
 
+#board .card {
+    background-size: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
