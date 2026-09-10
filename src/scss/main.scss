@@ -2,24 +2,24 @@
 @import "base";
 @import "layout";
 @import "modules/example";
+@import "memory";
+@import "menu";
 
-
-
-
-
-#board {
-    width: 1900px;
-    height: 2200px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 10px;
-    
+root {
+  --theme-bg: hsl(225 53% 71% 7 25%);
 }
 
-#board .card {
-    background-size: cover;
-    border-radius: 10px;
-    cursor: pointer;
+$motion-ok: "(prefers-reduced-motion: no-preference)";
+$dark: "(prefers-color-scheme: dark)";
+$hd-color: "(dynamic-range: high)";
+
+
+html {
+  background: conic-gradient(at -100% 100%, #212529, 50%, #495057, #212529);
 }
+
+
+body {
+  perspective: 40vw;
+}
+
