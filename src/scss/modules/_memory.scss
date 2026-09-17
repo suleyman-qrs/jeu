@@ -2,13 +2,6 @@ $motion-ok: "(prefers-reduced-motion: no-preference)";
 $dark: "(prefers-color-scheme: dark)";
 $hd-color: "(dynamic-range: high)";
 
-.game-layout {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 40px;
-}
-
 #board {
   width: 950px;
   height: 1300px;
@@ -21,8 +14,8 @@ $hd-color: "(dynamic-range: high)";
 
   --x: initial;
   --y: initial;
-  --_max-rotateY: 4deg;
-  --_max-rotateX: 4deg;
+  --_max-rotateY: 40deg;
+  --_max-rotateX: 40deg;
 
   transform: rotateY(
       clamp(calc(var(--_max-rotateY) * -1), var(--y), var(--_max-rotateY))
@@ -36,6 +29,7 @@ $hd-color: "(dynamic-range: high)";
     transition: transform 0.1s ease;
   }
 }
+
 #board .card {
   background-size: contain;
   border-radius: 10px;
@@ -74,7 +68,7 @@ $hd-color: "(dynamic-range: high)";
   }
 
   @media #{$dark} {
-    --theme: hsl(0, 61%, 52%);
+    --theme: hsl(355, 55%, 28%);
     --theme-bg: hsla(0, 53%, 71%, 0.25);
     --theme-bg-hover: hsla(0, 53%, 50%, 0.4);
     --theme-shadow: hsla(0, 53%, 10%, 0.25);
@@ -86,7 +80,7 @@ $hd-color: "(dynamic-range: high)";
     }
   }
   background-color: var(--_btn-bg);
-  color: var(--_btn-text);
+  color: var(--btn-text);
   text-shadow: 0 1px 1px var(--_btn-text-shadow);
   transform: translateZ(var(--distance));
   transform-style: preserve-3d;
@@ -160,15 +154,22 @@ $hd-color: "(dynamic-range: high)";
   }
 }
 
+.game-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50px;
+}
+
 .game-UI {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
-
+  font-family: handwritten;
   margin: 0;
   padding: 20px;
   width: 300px;
-  color: #e8dcc4;
+  color: #fff3da;
 }
