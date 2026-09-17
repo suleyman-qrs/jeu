@@ -10,13 +10,329 @@ $hd-color: "(dynamic-range: high)";
 @import "modules/menu";
 
 html {
-  background-image:
-    url("../assets/paper.jpg"),
-    conic-gradient(at -100% 100%, #1a1a1afe, 100%, #5d5858, #423c3c);
-  background-blend-mode: multiply;
-  background-size: cover;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  margin: 0;
+  padding: 40px;
   perspective: 40vw;
+  background: #000;
+  background: rgba(0, 0, 0, 1);
+}
+
+/* ---------- Fog ---------- */
+.fogwrapper {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  pointer-events: none;
+  -webkit-filter: blur(1px) grayscale(0.2) saturate(1.2) sepia(0.2);
+  filter: blur(1px) grayscale(0.2) saturate(1.2) sepia(0.2);
+}
+
+#foglayer_01,
+#foglayer_02,
+#foglayer_03 {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-repeat: repeat-x;
+  background-size: 100vw 100%;
+}
+
+#foglayer_01 {
+  background-image: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png");
+  -webkit-animation:
+    foglayer_01_opacity 10s linear infinite,
+    foglayer_moveme 15s linear infinite;
+  -moz-animation:
+    foglayer_01_opacity 10s linear infinite,
+    foglayer_moveme 15s linear infinite;
+  animation:
+    foglayer_01_opacity 10s linear infinite,
+    foglayer_moveme 15s linear infinite;
+}
+#foglayer_02,
+#foglayer_03 {
+  background-image: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png");
+}
+#foglayer_02 {
+  -webkit-animation:
+    foglayer_02_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+  -moz-animation:
+    foglayer_02_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+  animation:
+    foglayer_02_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+}
+#foglayer_03 {
+  -webkit-animation:
+    foglayer_03_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+  -moz-animation:
+    foglayer_03_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+  animation:
+    foglayer_03_opacity 21s linear infinite,
+    foglayer_moveme 13s linear infinite;
+}
+
+/* ---------- Keyframe Layer 1 ---------- */
+@-webkit-keyframes foglayer_01_opacity {
+  0% {
+    opacity: 0.1;
+  }
+  22% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.28;
+  }
+  58% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.16;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-moz-keyframes foglayer_01_opacity {
+  0% {
+    opacity: 0.1;
+  }
+  22% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.28;
+  }
+  58% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.16;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-o-keyframes foglayer_01_opacity {
+  0% {
+    opacity: 0.1;
+  }
+  22% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.28;
+  }
+  58% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.16;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@keyframes foglayer_01_opacity {
+  0% {
+    opacity: 0.1;
+  }
+  22% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.28;
+  }
+  58% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.16;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+/* ---------- Keyframe Layer 2 ---------- */
+@-webkit-keyframes foglayer_02_opacity {
+  0% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@-moz-keyframes foglayer_02_opacity {
+  0% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@-o-keyframes foglayer_02_opacity {
+  0% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes foglayer_02_opacity {
+  0% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+/* ---------- Keyframe Layer 3 ---------- */
+@-webkit-keyframes foglayer_03_opacity {
+  0% {
+    opacity: 0.8;
+  }
+  27% {
+    opacity: 0.2;
+  }
+  52% {
+    opacity: 0.6;
+  }
+  68% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@-moz-keyframes foglayer_03_opacity {
+  0% {
+    opacity: 0.8;
+  }
+  27% {
+    opacity: 0.2;
+  }
+  52% {
+    opacity: 0.6;
+  }
+  68% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@-o-keyframes foglayer_03_opacity {
+  0% {
+    opacity: 0.8;
+  }
+  27% {
+    opacity: 0.2;
+  }
+  52% {
+    opacity: 0.6;
+  }
+  68% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@keyframes foglayer_03_opacity {
+  0% {
+    opacity: 0.8;
+  }
+  27% {
+    opacity: 0.2;
+  }
+  52% {
+    opacity: 0.6;
+  }
+  68% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+/* ---------- Keyframe moveMe ---------- */
+@-webkit-keyframes foglayer_moveme {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -100vw;
+  }
+}
+@-moz-keyframes foglayer_moveme {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -100vw;
+  }
+}
+@-o-keyframes foglayer_moveme {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -100vw;
+  }
+}
+@keyframes foglayer_moveme {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -100vw;
+  }
 }

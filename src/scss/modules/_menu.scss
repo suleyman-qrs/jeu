@@ -7,7 +7,7 @@
   --y: initial;
   --x: initial;
   --distance: 1px;
-  --theme: hsl(359, 100%, 50%);
+  --theme: hsl(355, 55%, 28%);
   --theme-bg: hsla(0, 100%, 50%, 0.25);
   --theme-bg-hover: hsla(8, 100%, 50%, 0.4);
   --theme-text: white;
@@ -44,7 +44,7 @@
 
   @media #{$hd-color} {
     @supports (color: color(display-p3 0 0 0)) {
-      --theme: color(display-p3 1 0 0);
+      --theme: color(display-p3 0.35 0.04 0.06);
     }
   }
 }
