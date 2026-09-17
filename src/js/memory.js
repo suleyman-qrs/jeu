@@ -1,10 +1,54 @@
 const board = document.querySelector("#board");
-var extSourceOfImg =
-  "https://raw.githubusercontent.com/alnero/Zipline-data/master/Taro/img/";
 
-const cardnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const cardNames = [
+  "Artifact",
+  "Beast",
+  "Broken-One",
+  "Dark-Lord",
+  "Donjon",
+  "Executioner",
+  "Ghost",
+  "Horseman",
+  "Innocent",
+  "Marionette",
+  "Mists",
+  "Priest",
+  "Raven",
+  "Rogue",
+  "Seer",
+  "Tempter",
+  "Warrior",
+  "Wizard",
+];
 
-const doubledCardNumbers = [...cardnumbers, ...cardnumbers];
+const cardImages = {
+  Artifact: new URL("../assets/img/Artifact.webp", import.meta.url),
+  Beast: new URL("../assets/img/Beast.webp", import.meta.url),
+  "Broken-One": new URL("../assets/img/Broken-One.webp", import.meta.url),
+  "Dark-Lord": new URL("../assets/img/Dark-Lord.webp", import.meta.url),
+  Donjon: new URL("../assets/img/Donjon.webp", import.meta.url),
+  Executioner: new URL("../assets/img/Executioner.webp", import.meta.url),
+  Ghost: new URL("../assets/img/Ghost.webp", import.meta.url),
+  Horseman: new URL("../assets/img/Horseman.webp", import.meta.url),
+  Innocent: new URL("../assets/img/Innocent.webp", import.meta.url),
+  Marionette: new URL("../assets/img/Marionette.webp", import.meta.url),
+  Mists: new URL("../assets/img/Mists.webp", import.meta.url),
+  Priest: new URL("../assets/img/Priest.webp", import.meta.url),
+  Raven: new URL("../assets/img/Raven.webp", import.meta.url),
+  Rogue: new URL("../assets/img/Rogue.webp", import.meta.url),
+  Seer: new URL("../assets/img/Seer.webp", import.meta.url),
+  Tempter: new URL("../assets/img/Tempter.webp", import.meta.url),
+  Warrior: new URL("../assets/img/Warrior.webp", import.meta.url),
+  Wizard: new URL("../assets/img/Wizard.webp", import.meta.url),
+};
+
+function cardImageUrl(name) {
+  return cardImages[name];
+}
+
+const coverImageUrl = new URL("../assets/img/cover.png", import.meta.url);
+
+const doubledCardNumbers = [...cardNames, ...cardNames];
 
 shuffleArray(doubledCardNumbers);
 
@@ -15,7 +59,7 @@ let lockboard = false;
 doubledCardNumbers.forEach((card) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
-  cardElement.style.backgroundImage = `url(${extSourceOfImg}back.jpg)`;
+  cardElement.style.backgroundImage = `url(${coverImageUrl})`;
 
   cardElement.addEventListener("click", () => {
     if (lockboard) {
@@ -23,7 +67,7 @@ doubledCardNumbers.forEach((card) => {
     }
     if (firstChoice === null) {
       firstChoice = cardElement;
-      cardElement.style.backgroundImage = `url(${extSourceOfImg}${card}.jpg)`;
+      cardElement.style.backgroundImage = `url(${cardImageUrl(card)})`;
 
       return;
     }
@@ -33,7 +77,7 @@ doubledCardNumbers.forEach((card) => {
     }
 
     secondChoice = cardElement;
-    cardElement.style.backgroundImage = `url(${extSourceOfImg}${card}.jpg)`;
+    cardElement.style.backgroundImage = `url(${cardImageUrl(card)})`;
     lockboard = true;
 
     if (
@@ -46,8 +90,8 @@ doubledCardNumbers.forEach((card) => {
     }
 
     setTimeout(() => {
-      firstChoice.style.backgroundImage = `url(${extSourceOfImg}back.jpg)`;
-      secondChoice.style.backgroundImage = `url(${extSourceOfImg}back.jpg)`;
+      firstChoice.style.backgroundImage = `url(${coverImageUrl})`;
+      secondChoice.style.backgroundImage = `url(${coverImageUrl})`;
       firstChoice = null;
       secondChoice = null;
       lockboard = false;
