@@ -108,3 +108,41 @@ function shuffleArray(array) {
   }
   return array;
 }
+
+const { matches: motionOK } = window.matchMedia(
+  "(prefers-reduced-motion: no-preference)",
+);
+
+const getAngles = (card, clientX, clientY) => {
+  const { x, y, width, height } = card.getBoundingClientRect();
+
+  const dx = clientX - (x + 0.5 * width);
+  const dy = clientY - (y + 0.5 * height);
+
+  return { dx, dy };
+};
+
+if (motionOK) {
+  board.addEventListener("mousemove", ({ target, clientX, clientY }) => {
+    const card = target.closest(".card");
+    if (!card) return;
+
+    const { dx, dy } = getAngles(card, clientX, clientY);
+
+    card.style.setProperty("--x", `${dy / 20}deg`);
+    card.style.setProperty("--y", `${dx / 20}deg`);
+  });
+}
+
+const boardRect = board.getBoundingClientRect();
+
+if (motionOK) {
+  window.addEventListener("mousemove", ({ clientX, clientY }) => {
+    const { x, y, width, height } = boardRect;
+    const dx = clientX - (x + 0.5 * width);
+    const dy = clientY - (y + 0.5 * height);
+
+    board.style.setProperty("--x", `${dy / 40}deg`);
+    board.style.setProperty("--y", `${dx / 40}deg`);
+  });
+}
