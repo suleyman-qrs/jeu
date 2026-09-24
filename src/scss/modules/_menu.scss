@@ -7,18 +7,11 @@
   --y: initial;
   --x: initial;
   --distance: 1px;
-  --theme: hsl(355, 55%, 28%);
-  --theme-bg: hsla(0, 100%, 50%, 0.25);
-  --theme-bg-hover: hsla(8, 100%, 50%, 0.4);
   --theme-text: white;
-  --theme-shadow: hsla(0, 100%, 10%, 0.25);
 
   --_max-rotateY: 10deg;
   --_max-rotateX: 15deg;
-  --_btn-bg: var(--theme-bg);
-  --_btn-bg-hover: var(--theme-bg-hover);
   --_btn-text: var(--theme-text);
-  --_btn-text-shadow: var(--theme-shadow);
   --_bounce-ease: cubic-bezier(0.5, 1.75, 0.75, 1.25);
 
   transform-style: preserve-3d;
@@ -33,19 +26,6 @@
   @media #{$motion-ok} {
     will-change: transform;
     transition: transform 0.1s ease;
-  }
-
-  @media #{$dark} {
-    --theme: hsl(0, 61%, 52%);
-    --theme-bg: hsla(0, 53%, 71%, 0.25);
-    --theme-bg-hover: hsla(0, 53%, 50%, 0.4);
-    --theme-shadow: hsla(0, 53%, 10%, 0.25);
-  }
-
-  @media #{$hd-color} {
-    @supports (color: color(display-p3 0 0 0)) {
-      --theme: color(display-p3 0.35 0.04 0.06);
-    }
   }
 }
 
@@ -62,9 +42,7 @@
   text-decoration: none;
   outline: none;
 
-  background-color: var(--_btn-bg);
   color: var(--_btn-text);
-  text-shadow: 0 1px 1px var(--_btn-text-shadow);
 
   font-size: 5vmin;
   font-family: handwritten;
@@ -83,18 +61,11 @@
     position: absolute;
     inset: 0;
 
-    border: 1px solid var(--theme);
     border-radius: 5px 5px;
   }
 
   &::before {
     border-width: 3px;
-
-    @media #{$dark} {
-      box-shadow:
-        0 0 25px var(--theme),
-        inset 0 0 25px var(--theme);
-    }
   }
 
   &::after {
@@ -107,9 +78,7 @@
 
   @media #{$motion-ok} {
     will-change: transform;
-    transition:
-      transform 0.2s ease,
-      background-color 0.5s ease;
+    transition: transform 0.2s ease;
 
     &::before,
     &::after {
@@ -126,7 +95,6 @@
 
   &:is(:hover, :focus-visible):not(:active) {
     --distance: 15px;
-    background-color: var(--_btn-bg-hover);
 
     @media #{$motion-ok} {
       --distance: 3vmax;
