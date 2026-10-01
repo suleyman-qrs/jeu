@@ -54,9 +54,8 @@ $hd-color: "(dynamic-range: high)";
   @media #{$motion-ok} {
     will-change: transform;
     transition: transform 0.1s ease;
+    transform-style: preserve-3d;
   }
-
-  transform-style: preserve-3d;
 
   .card-back,
   .card-front {
