@@ -246,7 +246,7 @@ function cardImageUrl(name) {
 
 const coverImageUrl = new URL("../assets/img/cover.png", import.meta.url);
 
-const maxCards = 108;
+const maxCards = 30;
 const pairsNeeded = maxCards / 2;
 
 shuffleArray(cardNames);

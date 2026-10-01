@@ -8,6 +8,7 @@ $hd-color: "(dynamic-range: high)";
 @import "modules/example";
 @import "modules/memory";
 @import "modules/menu";
+@import "modules/doom";
 
 html {
   margin: 0;
@@ -16,7 +17,7 @@ html {
 
 body {
   margin: 0;
-  padding: 40px;
+  padding: 2.5rem;
   perspective: 40vw;
   background: #000;
   background: rgba(0, 0, 0, 1);

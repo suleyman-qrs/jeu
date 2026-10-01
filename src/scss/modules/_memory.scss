@@ -3,13 +3,25 @@ $dark: "(prefers-color-scheme: dark)";
 $hd-color: "(dynamic-range: high)";
 
 #board {
-  width: 700px;
+  --gap: 0.625rem;
+  --card-ratio: 0.714; /* card width / card height (714 x 1000 art) */
+  /* the largest card height that fits on screen, by height AND by width */
+  --card-h: min(
+    calc((100vh - 7.5rem - (var(--rows) - 1) * var(--gap)) / var(--rows)),
+    calc(
+      (100vw - 28.75rem - (var(--columns) - 1) * var(--gap)) / var(--columns) /
+        var(--card-ratio)
+    )
+  );
+  --card-w: calc(var(--card-h) * var(--card-ratio));
+
+  width: max-content;
   height: auto;
-  margin: 100px auto;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(var(--columns), 1fr);
-  grid-template-rows: repeat(var(--rows), 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(var(--columns), var(--card-w));
+  grid-template-rows: repeat(var(--rows), var(--card-h));
+  gap: var(--gap);
   transform-style: preserve-3d;
 
   --x: initial;
@@ -33,13 +45,13 @@ $hd-color: "(dynamic-range: high)";
 #board .card {
   aspect-ratio: 714 / 1000;
   background-size: contain;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   cursor: pointer;
   position: relative;
 
   --y: initial;
   --x: initial;
-  --distance: 1px;
+  --distance: 0.0625rem;
   --theme-text: white;
 
   --_max-rotateY: 10deg;
@@ -73,7 +85,7 @@ $hd-color: "(dynamic-range: high)";
     position: absolute;
     inset: 0;
 
-    border-radius: 5px 5px;
+    border-radius: 0.3125rem 0.3125rem;
   }
 
   &::before {
@@ -111,7 +123,7 @@ $hd-color: "(dynamic-range: high)";
   }
 
   &:is(:hover, :focus-visible) {
-    --distance: 5px;
+    --distance: 0.3125rem;
     background-color: var(--_btn-bg-hover);
 
     @media #{$motion-ok} {
@@ -132,9 +144,10 @@ $hd-color: "(dynamic-range: high)";
 
 .game-layout {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 50px;
+  min-height: calc(100vh - 5rem);
+  gap: 3.125rem;
   transform-style: preserve-3d;
 }
 
@@ -143,12 +156,12 @@ $hd-color: "(dynamic-range: high)";
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 1.25rem;
   font-family: handwritten;
-  font-size: 32px;
+  font-size: 2rem;
   margin: 0;
-  padding: 20px;
-  width: 300px;
+  padding: 1.25rem;
+  width: 18.75rem;
   color: #fff3da;
 }
 
@@ -158,14 +171,23 @@ $hd-color: "(dynamic-range: high)";
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
+}
+
+.player-score {
+  /* plain lining figures: the handwritten font makes 0 look like "o" */
+  font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 700;
 }
 
 .player {
   display: flex;
   justify-content: space-between;
-  padding: 8px 12px;
-  border-radius: 8px;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.25em 0.375em;
+  border-radius: 0.25em;
   opacity: 0.6;
 
   &.active {
@@ -186,7 +208,7 @@ $hd-color: "(dynamic-range: high)";
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 24px 32px;
+  padding: 1.5rem 2rem;
   text-align: center;
   opacity: 0;
 
@@ -194,7 +216,7 @@ $hd-color: "(dynamic-range: high)";
     margin: 0;
     color: #fff3da;
     font-family: handwritten;
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   &.show {

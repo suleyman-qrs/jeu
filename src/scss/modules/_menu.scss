@@ -6,7 +6,7 @@
   gap: 2.5vh;
   --y: initial;
   --x: initial;
-  --distance: 1px;
+  --distance: 0.0625rem;
   --theme-text: white;
 
   --_max-rotateY: 10deg;
@@ -48,7 +48,7 @@
   font-family: handwritten;
   padding-block: 0.75ch;
   padding-inline: 2ch;
-  border-radius: 5px 20px;
+  border-radius: 0.3125rem 1.25rem;
 
   transform: translateZ(var(--distance));
   transform-style: preserve-3d;
@@ -61,11 +61,11 @@
     position: absolute;
     inset: 0;
 
-    border-radius: 5px 5px;
+    border-radius: 0.3125rem 0.3125rem;
   }
 
   &::before {
-    border-width: 3px;
+    border-width: 0.1875rem;
   }
 
   &::after {
@@ -94,7 +94,7 @@
   }
 
   &:is(:hover, :focus-visible):not(:active) {
-    --distance: 15px;
+    --distance: 0.9375rem;
 
     @media #{$motion-ok} {
       --distance: 3vmax;
