@@ -273,6 +273,15 @@ const playerElements = document.querySelectorAll("#player-list .player");
 
 const pairBanner = document.querySelector("#pair-banner");
 const pairBannerText = document.querySelector("#pair-banner-text");
+const inspect = document.querySelector("#inspect");
+const inspectName = document.querySelector("#inspect-name");
+const inspectText = document.querySelector("#inspect-text");
+const inspectImg = document.querySelector("#inspect-img");
+const inspectClose = document.querySelector("#inspect-close");
+
+inspectClose.addEventListener("click", () => {
+  inspect.classList.remove("open");
+});
 
 function showPairBanner(card) {
   pairBannerText.textContent = cardDescriptions[card];
@@ -289,7 +298,15 @@ let lockboard = false;
 doubledCardNumbers.forEach((card) => {
   const cardElement = document.createElement("div");
   cardElement.classList.add("card");
-  cardElement.style.backgroundImage = `url(${coverImageUrl})`;
+  cardElement.dataset.name = card;
+  const cardBack = document.createElement("div");
+  const cardFront = document.createElement("div");
+  cardFront.classList.add("card-front");
+  cardBack.classList.add("card-back");
+  cardElement.appendChild(cardFront);
+  cardElement.appendChild(cardBack);
+  cardBack.style.backgroundImage = `url(${coverImageUrl})`;
+  cardFront.style.backgroundImage = `url(${cardImageUrl(card)})`;
   startMusicOnce();
 
   cardElement.addEventListener("click", () => {
@@ -298,7 +315,7 @@ doubledCardNumbers.forEach((card) => {
     }
     if (firstChoice === null) {
       firstChoice = cardElement;
-      cardElement.style.backgroundImage = `url(${cardImageUrl(card)})`;
+      cardElement.classList.add("flipped");
       function playSfx() {
         sfx.currentTime = 0;
         sfx.play();
@@ -313,7 +330,7 @@ doubledCardNumbers.forEach((card) => {
     }
 
     secondChoice = cardElement;
-    cardElement.style.backgroundImage = `url(${cardImageUrl(card)})`;
+    cardElement.classList.add("flipped");
     lockboard = true;
     function playSfx() {
       sfx.currentTime = 0;
@@ -321,15 +338,17 @@ doubledCardNumbers.forEach((card) => {
     }
     playSfx();
 
-    if (
-      firstChoice.style.backgroundImage === secondChoice.style.backgroundImage
-    ) {
+    if (firstChoice.dataset.name === secondChoice.dataset.name) {
       firstChoice = null;
       secondChoice = null;
       lockboard = false;
       players[currentPlayerIndex].score++;
       updateScore();
       showPairBanner(card);
+      inspectName.textContent = card;
+      inspectText.textContent = cardDescriptions[card];
+      inspectImg.src = cardImageUrl(card);
+      inspect.classList.add("open");
       function playTarot() {
         tarot.currentTime = 0;
         tarot.play();
@@ -339,8 +358,8 @@ doubledCardNumbers.forEach((card) => {
     }
 
     setTimeout(() => {
-      firstChoice.style.backgroundImage = `url(${coverImageUrl})`;
-      secondChoice.style.backgroundImage = `url(${coverImageUrl})`;
+      firstChoice.classList.remove("flipped");
+      secondChoice.classList.remove("flipped");
       firstChoice = null;
       secondChoice = null;
       lockboard = false;
@@ -394,7 +413,15 @@ if (motionOK) {
     card.style.setProperty("--x", `${dy / 20}deg`);
     card.style.setProperty("--y", `${dx / 20}deg`);
   });
+
+  inspect.addEventListener("mousemove", ({ clientX, clientY }) => {
+    const { dx, dy } = getAngles(inspectImg, clientX, clientY);
+
+    inspectImg.style.setProperty("--ry", `${dx / 20}deg`);
+    inspectImg.style.setProperty("--rx", `${dy / 20}deg`);
+  });
 }
 
 music.loop = true;
-music.volume = 0.4;
+music.volume = 0.0;
+sfx.volume = 0.1;
